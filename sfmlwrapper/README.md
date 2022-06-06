@@ -14,7 +14,7 @@ with your main actor. Without this, expect crashes (when multiple threads attemp
 
 ## Installation
 
-Simply copy the `sfml` folder into the directory of your app. The test app uses `use "sfml"` so it expects the sfml folder in its own folder. Alternatively, put the `sfml` folder whereever you keep your addon modules and use an appropriate `use` statement.
+Simply copy the `sfml` folder into the directory of your app. The test app uses `use "sfml"` so it expects the sfml folder to be in its folder. Alternatively, put the `sfml` folder whereever you keep your addon modules and adjust the `use` statement.
 You will need the link and runtime libraries for CSFML. For Windows, those are included in the `windows libs` folder. If you are on a different system, use the dynamic link library version of CSFML and modify the 
 ```pony
 use "lib:csfml/csfml-system"
