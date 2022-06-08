@@ -5,7 +5,7 @@ use "lib:csfml/csfml-audio"
 use "buffered"
 use "collections"
 
-use @sfRenderWindow_create[SFRenderWindowRaw](mode : SFVideoMode, name : Pointer[U8 val] tag, style : I32, sfContextsettings : SFContextSettingsRaw)
+use @sfRenderWindow_create[SFRenderWindowRaw](mode : Pointer[U32] tag, name : Pointer[U8 val] tag, style : I32, sfContextsettings : SFContextSettingsRaw)
 use @sfRenderWindow_setFramerateLimit[None](window : SFRenderWindowRaw box, limit : U32)
 use @sfWindow_getSettings2[None](window : SFRenderWindowRaw box, sfContextsettings : SFContextSettingsRaw)
 use @sfRenderWindow_isOpen[I32](window : SFRenderWindowRaw box)
@@ -524,7 +524,8 @@ class SFRenderWindow
     let _evt : SFEventStruct
 
     new create(mode : SFVideoMode, title : String, style : I32, ctxsettings : SFContextSettingsRaw = SFContextSettingsRaw.none()) =>
-        _raw = @sfRenderWindow_create(mode, title.cstring(), style, ctxsettings)
+        let mode_arr: Array[U32] = [mode.width; mode.height; mode.bitsPerPixel] // trick to send this instead of the value struct
+        _raw = @sfRenderWindow_create(mode_arr.cpointer(), title.cstring(), style, ctxsettings)
         _evt = SFEventStruct(_raw)
 
     fun ref getEventStruct() : SFEventStruct =>
