@@ -12,6 +12,9 @@
 #include <stdlib.h>
 #include "raylib.h"
 
+#define bb_num 10000 // < 8000 works
+Vector3 bbpos[bb_num];
+
 int main(void)
 {
     // Initialization
@@ -32,8 +35,6 @@ int main(void)
     Shader alphaDiscard = LoadShader(NULL, "resources/shaders/glsl330/alphaDiscard.fs");
 
     // setup random bill board positions    
-    const int bb_num = 10000;
-    Vector3 bbpos[bb_num];
     for (int i = 0; i < bb_num; i++)
     {
         bbpos[i] = (Vector3){100.0*((float)rand()/RAND_MAX) - 50.0, 100.0*((float)rand()/RAND_MAX) - 50.0, 100.0*((float)rand()/RAND_MAX) - 50.0};
