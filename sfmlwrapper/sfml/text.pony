@@ -16,8 +16,8 @@ use @sfText_setPosition[None](text : SFTextRaw box, position : U64)
 use @sfText_setScale[None](text : SFTextRaw box, factors : U64)
 use @sfText_setOrigin[None](text : SFTextRaw box, origin : U64)
 use @sfText_setRotation[None](text : SFTextRaw box, angle : F32)
-use @sfText_getLocalBounds2[None](text : SFTextRaw box, bounds : SFFloatRectRaw)
-use @sfText_getGlobalBounds2[None](text : SFTextRaw box, bounds : SFFloatRectRaw)
+use @sfText_getLocalBoundsA[None](text : SFTextRaw box, bounds : SFFloatRectRaw)
+use @sfText_getGlobalBoundsA[None](text : SFTextRaw box, bounds : SFFloatRectRaw)
 use @sfText_destroy[None](text : SFTextRaw box)
 
 struct _SFText
@@ -105,7 +105,7 @@ class SFText
     fun ref getGlobalBounds() : SFFloatRect =>
         let rect = SFFloatRect.from_u128(0)
         if not _raw.is_none() then
-            @sfText_getGlobalBounds2(_raw, SFFloatRectRaw(rect))
+            @sfText_getGlobalBoundsA(_raw, SFFloatRectRaw(rect))
             rect
         else
             rect
@@ -114,7 +114,7 @@ class SFText
     fun ref getLocalBounds() : SFFloatRect =>
         let rect = SFFloatRect.from_u128(0)
         if not _raw.is_none() then
-            @sfText_getLocalBounds2(_raw, SFFloatRectRaw(rect))
+            @sfText_getLocalBoundsA(_raw, SFFloatRectRaw(rect))
             rect
         else
             rect
